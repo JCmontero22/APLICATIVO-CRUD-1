@@ -1,0 +1,41 @@
+html {
+   box-sizing: border-box;
+    font-size: 75.5%;
+    min-height: 100%;
+    position: relative;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+   font-size: 1.6rem;
+    height: 100%;
+}
+
+.container{
+    margin-top: 50px;
+}
+
+.main{
+    margin-top: 50px;
+    background-color: #d8dbe98a;
+    padding: 50px;
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.btn{
+    font-size: 15px;
+}
+
+.content-formulario{
+    padding: 10px;
+}
+
