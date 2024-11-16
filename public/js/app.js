@@ -13,7 +13,6 @@ function listarUsuarios() {
         'success': function(response){
             console.log(response);
         }
-        
     });
 }
 
