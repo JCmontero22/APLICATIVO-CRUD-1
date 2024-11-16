@@ -1,3 +1,5 @@
+<?php require_once('./config/config.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +10,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="./css/style.css">
-        <title>Crud 1</title>
+        <link rel="stylesheet" href="./public/css/style.css">
+        <title><?php echo APP_NAME; ?></title>
     </head>
 
     <body class="container">
@@ -113,6 +115,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script src="./public/js/app.js"></script>
 
 
 </html>
