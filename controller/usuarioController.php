@@ -1,6 +1,7 @@
 <?php 
 
     require_once('../model/usuarioModel.php');
+    require_once('../core/helpers/funciones.php');
 
     class usuarioController extends usuarioModel
     {
@@ -9,11 +10,7 @@
             $respuesta = [];
 
             try {
-                $resultadoUsuarios = $this->getListarUsuarios();
-
-                if (count($resultadoUsuarios) == 0) {
-                    throw new Exception("No se encontraron usuarios");
-                }
+                $resultadoUsuarios = $this->getAll_ListarUsuarios();
 
                 for ($i=0; $i < count($resultadoUsuarios); $i++) { 
                     $data[] = [
@@ -27,9 +24,10 @@
                     ];
                 }
             
+                
                 $respuesta['status'] = true;
                 $respuesta['mensaje'] = "Consulta realizada con exito";
-                $respuesta['datos'] = $data;
+                $respuesta['data'] = $data;
 
                 return $respuesta;    
             } catch (\Exception $e) {
@@ -41,6 +39,18 @@
             }
 
             
+        }
+
+        public function registrarUsuario($data, $imagen){
+            $data['imagen'] = subirImagen();
+            
+            try {
+                $resultado = $this->insert_Usuarios($data);
+                var_dump($resultado);die();
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+
         }
 
     }

@@ -25,5 +25,14 @@
             
             return $sql->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function execute($query) {
+            $conexion = $this->conexion();
+            $sql = $conexion->prepare($query);
+            $sql->execute();
+
+            return $sql->rowCount();
+
+        }
     }
     

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="./public/css/style.css">
         <title><?php echo APP_NAME; ?></title>
     </head>
@@ -23,17 +24,17 @@
         <div class="main">
             <section class="btnModal">
                 <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <div class=" d-flex justify-content-end">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegistro">Registro <i class="fa fa-plus" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
             </section>
-
+            
             <section class="tabla mt-5">
                 <div class="table-responsive">
-                    <table class="table table-bodered table-striped">
+                    <table class="table table-bodered table-striped" id="datosUsuario">
                         <thead class="text-center">
                             <tr>
                                 <th>ID</th>
@@ -102,8 +103,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Registrar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarFormulario()">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="registrar">Registrar</button>
                     </div>
                 </div>
             </div>
