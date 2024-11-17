@@ -1,8 +1,8 @@
-
+var listUsuarios;
 
 function init() {
     listarUsuarios();
-
+    limpiarFormulario();
     $("#registrar").on('click', function(){
         crearRegistro();
     });
@@ -16,6 +16,7 @@ function listarUsuarios() {
         'dataType': 'json',
         'success': function(response){
             if (response.status == true) {
+                listUsuarios = response.data;
                 cargarDataTable(response.data);
             }else{
                 Swal.fire({
@@ -42,13 +43,13 @@ function cargarDataTable(data) {
             {data: "fechaCreacion"},
             {data: "imagen",
                 render: function(data, type, row) {
-                return `<img src="${data}" alt="Imagen" width="50" height="50">`;
+                return `<img src="./public/img/img_usuarios/${row.imagen}" alt="Imagen" width="80" height="50">`;
             }},
             {data: null,
                 render: function(data, type, row) {
                     return `
-                        <button class="btn btn-primary btn-sm"> <i class="fas fa-pen"></i> </button>
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash" onclick="eliminarRegistro(${row.id})"></i></button>
+                        <button class="btn btn-primary btn-sm" onclick="editarRegistro(${row.id})"> <i class="fas fa-pen"></i> </button>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${row.id})"><i class="fas fa-trash"></i></button>
                     `;
                 }
             }
@@ -82,8 +83,6 @@ function cargarDataTable(data) {
 function crearRegistro() {
    
     let validado = validarDatos();
-    console.log(validado);
-    
     if (validado != false) {
         $.ajax({
             method: "POST",
@@ -99,12 +98,9 @@ function crearRegistro() {
             }
         });    
     }
-
-    
 }
 
 function validarDatos() {
-
     let dataForm = new FormData(document.getElementById('formulario'));
 
     if (dataForm.get('nombre') == '' || dataForm.get('apellido') == '' || dataForm.get('telefono') == '' || dataForm.get('email') == '') {
@@ -122,13 +118,52 @@ function validarDatos() {
     }
 }
 
-function eliminarRegistro(id) {
-    console.log(id);
+function editarRegistro(id) {
+
+    listUsuarios.forEach(element => {
+        if (element.id == id) {
+            $("#modalRegistro").modal('show');
+            $("#registrar").hide();
+            $("#editar").show();
+
+            $("#nombre").val(element.nombre);
+            $("#apellido").val(element.apellido);
+            $("#telefono").val(element.telefono);
+            $("#email").val(element.email);
+
+            if (element.imagen != '') {
+                $("#contentImagenActual").show();
+                $("#imagenShow").attr('src', './public/img/img_usuarios/'+element.imagen);
+            }
+
+        }
+
+    });
+
+    /* const tabla = $('#datosUsuario').DataTable();
+
+    // Busca la fila en la tabla por ID
+    const fila = tabla.rows().data().toArray().find(item => item.id === id);
+
+    if (fila) {
+        console.log(fila); // Verifica que los datos de la fila se obtuvieron correctamente
+        alert(`Editar registro: ${fila.nombre} ${fila.apellido}`);
+        // Aquí puedes usar los datos de la fila, por ejemplo, abrir un modal o redirigir
+    } else {
+        console.error(`No se encontró el registro con ID: ${id}`);
+    } */
     
 }
 
+function eliminarRegistro(id) {
+    console.log(id);
+}
+
 function limpiarFormulario() {
-    $("#formulario")[0].reset()
+    $("#formulario")[0].reset();
+    $("#contentImagenActual").hide();
+    $("#editar").hide();
+    $("#registrar").show();
 }
 
 init();

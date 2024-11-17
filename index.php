@@ -35,15 +35,15 @@
             <section class="tabla mt-5">
                 <div class="table-responsive">
                     <table class="table table-bodered table-striped" id="datosUsuario">
-                        <thead class="text-center">
+                        <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
-                                <th>Imagen</th>
                                 <th>Fecha Crecion</th>
+                                <th>Imagen</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -91,6 +91,10 @@
                                     </div>
                                 </div>
                             
+                                <div id="contentImagenActual" class="mt-3">
+                                    <img id="imagenShow" src="" alt="" width="130px" height="100px">
+                                </div>
+
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label for="imagen" class="form-label">Imagen</label>
@@ -105,6 +109,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarFormulario()">Cancelar</button>
                         <button type="button" class="btn btn-primary" id="registrar">Registrar</button>
+                        <button type="button" class="btn btn-primary" id="editar">Actualizar</button>
                     </div>
                 </div>
             </div>

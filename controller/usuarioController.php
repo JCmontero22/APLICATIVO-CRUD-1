@@ -42,11 +42,15 @@
         }
 
         public function registrarUsuario($data, $imagen){
+            $respuesta = [];
+
             $data['imagen'] = subirImagen();
             
             try {
                 $resultado = $this->insert_Usuarios($data);
-                var_dump($resultado);die();
+                if ($resultado > 0) {
+                    
+                }
             } catch (\Throwable $th) {
                 //throw $th;
             }
