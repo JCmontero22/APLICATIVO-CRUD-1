@@ -46,14 +46,22 @@
 
             $data['imagen'] = subirImagen();
             
+            
+
             try {
                 $resultado = $this->insert_Usuarios($data);
                 if ($resultado > 0) {
+
+                    $respuesta['status'] = true;
+                    $respuesta['mensaje'] = "Usuarios registrado con exito";
                     
                 }
-            } catch (\Throwable $th) {
-                //throw $th;
+            } catch (\Exception $e) {
+                $respuesta['status'] = false;
+                $respuesta['mensaje'] = "Error al registrar el usaurio " . $e->getMessage();
             }
+
+            return $respuesta;
 
         }
 

@@ -19,6 +19,7 @@ error_reporting(E_ALL);
 
         case '2':
             $respuesta = $usuario->registrarUsuario($_POST, $_FILES);
+            echo json_encode($respuesta);
         break;
         
         default:

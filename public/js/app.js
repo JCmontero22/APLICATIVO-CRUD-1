@@ -92,6 +92,23 @@ function crearRegistro() {
             contentType: false,
             success: function(response) {
                 console.log(response);
+                
+                if (response.status == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registrado",
+                        text: "El registro se realizo con exito",
+                      });
+
+                      limpiarFormulario();
+
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Error al registrar el nuevo usuario",
+                      });
+                }
             },
             error: function(xhr, status, error) {
                 console.log("Error:", error);
