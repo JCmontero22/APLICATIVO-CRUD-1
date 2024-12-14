@@ -59,31 +59,33 @@
                 $respuesta['status'] = false;
                 $respuesta['mensaje'] = "Error al registrar el usaurio " . $e->getMessage();
             }
+
+            return $respuesta;
         }
 
-public function editarUsuarios($data) {
-    $respuesta = [];
-    try {
-        if ($_FILES['imagen']['name'] != "" || !empty($_FILES['imagen']['name'] != "")) { 
-            var_dump('entro');die();
-            $data['imagen'] = subirImagen(); 
-        }else{
-            $data['imagen'] = '';
-        }
+        public function editarUsuarios($data) {
+            $respuesta = [];
+            try {
+                if ($_FILES['imagen']['name'] != "" || !empty($_FILES['imagen']['name'] != "")) { 
+                    var_dump('entro');die();
+                    $data['imagen'] = subirImagen(); 
+                }else{
+                    $data['imagen'] = '';
+                }
 
-        $this->set_updateUsuario($data);
+                $this->set_updateUsuario($data);
 
-        $respuesta['status'] = true;
-        $respuesta['mensaje'] = "Se actualizo el usuario correctamente";
-        $respuesta['datos'] = '';
-        
-    } catch (\Exception $e) {
-        $respuesta['status'] = false;
-        $respuesta['mensaje'] = "No se realizo la actualizacion";
-        $respuesta['datos'] = $e->getMessage();
-    }
+                $respuesta['status'] = true;
+                $respuesta['mensaje'] = "Se actualizo el usuario correctamente";
+                $respuesta['datos'] = '';
+                
+            } catch (\Exception $e) {
+                $respuesta['status'] = false;
+                $respuesta['mensaje'] = "No se realizo la actualizacion";
+                $respuesta['datos'] = $e->getMessage();
+            }
 
-    return $respuesta;
+            return $respuesta;
         }
 
     }
