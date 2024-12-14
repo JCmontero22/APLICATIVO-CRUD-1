@@ -1,5 +1,5 @@
 var listUsuarios;
-
+var idEditar;
 function init() {
     listarUsuarios();
     limpiarFormulario();
@@ -26,7 +26,6 @@ function listarUsuarios() {
                 });
             }
         }
-        
     });
 }
 
@@ -48,7 +47,7 @@ function cargarDataTable(data) {
             {data: null,
                 render: function(data, type, row) {
                     return `
-                        <button class="btn btn-primary btn-sm" onclick="editarRegistro(${row.id})"> <i class="fas fa-pen"></i> </button>
+                        <button class="btn btn-primary btn-sm" onclick="cargarDataEditarModal(${row.id})"> <i class="fas fa-pen"></i> </button>
                         <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${row.id})"><i class="fas fa-trash"></i></button>
                     `;
                 }
@@ -100,28 +99,11 @@ function crearRegistro() {
     }
 }
 
-function validarDatos() {
-    let dataForm = new FormData(document.getElementById('formulario'));
-
-    if (dataForm.get('nombre') == '' || dataForm.get('apellido') == '' || dataForm.get('telefono') == '' || dataForm.get('email') == '') {
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Favor llenar los campos obligatorios marcados con *",
-        });
-
-        return false;
-    }else{
-
-        dataForm.append('accion', 2);
-        return dataForm;
-    }
-}
-
-function editarRegistro(id) {
+function cargarDataEditarModal(id) {
 
     listUsuarios.forEach(element => {
         if (element.id == id) {
+            idEditar = id;
             $("#modalRegistro").modal('show');
             $("#registrar").hide();
             $("#editar").show();
@@ -135,9 +117,7 @@ function editarRegistro(id) {
                 $("#contentImagenActual").show();
                 $("#imagenShow").attr('src', './public/img/img_usuarios/'+element.imagen);
             }
-
         }
-
     });
 
     /* const tabla = $('#datosUsuario').DataTable();
@@ -153,6 +133,49 @@ function editarRegistro(id) {
         console.error(`No se encontró el registro con ID: ${id}`);
     } */
     
+}
+
+function actualizarRegistro() {
+    let valido = validarDatos(idEditar);
+    if (valido != false) {
+        $.ajax({
+            method: "POST",
+            url: "./ajax/peticiones_usuario.php",
+            data: valido,
+            processData: false, 
+            contentType: false,
+            success: function(response) {
+                response = JSON.parse(response);
+                if (response.status == true) {
+                    alert(response.mensaje);
+                }
+            },
+        });
+    }
+}
+
+function validarDatos(id = null) {
+    let dataForm = new FormData(document.getElementById('formulario'));
+
+    if (dataForm.get('nombre') == '' || dataForm.get('apellido') == '' || dataForm.get('telefono') == '' || dataForm.get('email') == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Favor llenar los campos obligatorios marcados con *",
+        });
+
+        return false;
+    }else{
+
+        if (id == null) {
+            dataForm.append('accion', 2);    
+        }else{
+            dataForm.append('accion', 3);
+            dataForm.append('id', id);
+        }
+
+        return dataForm;
+    }
 }
 
 function eliminarRegistro(id) {

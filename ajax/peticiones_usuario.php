@@ -20,6 +20,11 @@ error_reporting(E_ALL);
         case '2':
             $respuesta = $usuario->registrarUsuario($_POST, $_FILES);
         break;
+
+        case '3':
+            $respuesta = $usuario->editarUsuarios($_POST, $_FILES);
+            echo json_encode($respuesta);
+        break;
         
         default:
             # code...

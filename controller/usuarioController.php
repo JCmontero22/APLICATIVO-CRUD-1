@@ -29,14 +29,13 @@
                 $respuesta['mensaje'] = "Consulta realizada con exito";
                 $respuesta['data'] = $data;
 
-                return $respuesta;    
             } catch (\Exception $e) {
                 $respuesta['status'] = false;
                 $respuesta['mensaje'] = $e->getMessage();
                 $respuesta['datos'] = '';
-
-                return $respuesta;
             }
+
+            return $respuesta;
 
             
         }
@@ -54,7 +53,31 @@
             } catch (\Throwable $th) {
                 //throw $th;
             }
+        }
 
+        public function editarUsuarios($data) {
+            $respuesta = [];
+            try {
+                if ($_FILES['imagen']['name'] != "" || !empty($_FILES['imagen']['name'] != "")) { 
+                    var_dump('entro');die();
+                    $data['imagen'] = subirImagen(); 
+                }else{
+                    $data['imagen'] = '';
+                }
+
+                $this->set_updateUsuario($data);
+
+                $respuesta['status'] = true;
+                $respuesta['mensaje'] = "Se actualizo el usuario correctamente";
+                $respuesta['datos'] = '';
+                
+            } catch (\Exception $e) {
+                $respuesta['status'] = false;
+                $respuesta['mensaje'] = "No se realizo la actualizacion";
+                $respuesta['datos'] = $e->getMessage();
+            }
+
+            return $respuesta;
         }
 
     }

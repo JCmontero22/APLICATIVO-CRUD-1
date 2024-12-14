@@ -18,7 +18,7 @@
     <body class="container">
         
         <div class="titulo text-center">
-            <h1>Crud con data table</h1>
+            <h1>CRUD DATATABLE</h1>
         </div>
 
         <div class="main">
@@ -60,7 +60,7 @@
 
                     <div class="modal-header">
                         <h2 class="modal-title" id="staticBackdropLabel">Registro</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarFormulario()"></button>
                     </div>
 
                     <div class="modal-body">
@@ -109,7 +109,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarFormulario()">Cancelar</button>
                         <button type="button" class="btn btn-primary" id="registrar">Registrar</button>
-                        <button type="button" class="btn btn-primary" id="editar">Actualizar</button>
+                        <button type="button" class="btn btn-primary" id="editar" onclick="actualizarRegistro()">Actualizar</button>
                     </div>
                 </div>
             </div>

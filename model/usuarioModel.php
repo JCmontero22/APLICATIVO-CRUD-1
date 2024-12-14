@@ -19,6 +19,17 @@
             return $respusta;
         }
 
+        protected function set_updateUsuario($data){
+            if ($data['imagen'] != '') {
+                $query = "UPDATE usuarios SET nombre_usuario = '".$data['nombre']."', apellido_usuario = '".$data['apellido']."', imagen_usuario = '".$data['imagen']."', telefono_usuario = '".$data['telefono']."', email_usuario = '".$data['email']."' WHERE id_usuario = " . $data['id'];
+            }else{
+                $query = "UPDATE usuarios SET nombre_usuario = '".$data['nombre']."', apellido_usuario = '".$data['apellido']."', telefono_usuario = '".$data['telefono']."', email_usuario = '".$data['email']."' WHERE id_usuario = " . $data['id'];
+            }
+            
+            $respusta = $this->execute($query);
+            return $respusta;
+            
+        }
 
     }
     
