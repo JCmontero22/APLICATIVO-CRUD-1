@@ -26,6 +26,10 @@ error_reporting(E_ALL);
             $respuesta = $usuario->editarUsuarios($_POST, $_FILES);
             echo json_encode($respuesta);
         break;
+
+        case '4':
+            # code...
+            break;
         
         default:
             # code...
