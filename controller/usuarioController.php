@@ -8,7 +8,6 @@
 
         public function listarUsuarios() {
             $respuesta = [];
-
             try {
                 $resultadoUsuarios = $this->getAll_ListarUsuarios();
 
@@ -36,16 +35,12 @@
             }
 
             return $respuesta;
-
-            
         }
 
         public function registrarUsuario($data, $imagen){
             $respuesta = [];
 
             $data['imagen'] = subirImagen();
-            
-            
 
             try {
                 $resultado = $this->insert_Usuarios($data);
@@ -67,7 +62,6 @@
             $respuesta = [];
             try {
                 if ($_FILES['imagen']['name'] != "" || !empty($_FILES['imagen']['name'] != "")) { 
-                    var_dump('entro');die();
                     $data['imagen'] = subirImagen(); 
                 }else{
                     $data['imagen'] = '';
@@ -88,5 +82,22 @@
             return $respuesta;
         }
 
+        public function eliminarUsuarios($id){
+            $respuesta = [];
+
+            try {
+                $this->set_eliminarUsuario($id);
+
+                $respuesta['status'] = true;
+                $respuesta['mensaje'] = "Se elimino el usuario correctamente";
+
+            } catch (\Exception $e) {
+                $respuesta['status'] = false;
+                $respuesta['mensaje'] = "Error al eliminar el usuario, intentelo mas tarde";
+                $respuesta['error'] = $e->getMessage();
+            }
+
+            return $respuesta;
+        }
     }
      

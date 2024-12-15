@@ -28,10 +28,11 @@ error_reporting(E_ALL);
         break;
 
         case '4':
-            # code...
-            break;
+            $respuesta = $usuario->eliminarUsuarios($_POST['id']);
+            echo json_encode($respuesta);
+        break;
         
         default:
-            # code...
-            break;
+            echo 'Error';
+        break;
     }

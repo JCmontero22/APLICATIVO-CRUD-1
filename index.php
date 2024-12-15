@@ -11,6 +11,11 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="./public/css/style.css">
         <title><?php echo APP_NAME; ?></title>
     </head>
@@ -55,7 +60,7 @@
 
         <!--*************** MODAL REGISTRO ***************-->
         <div class="modal fade" id="modalRegistro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -68,25 +73,31 @@
                             <form action="" id="formulario" enctype="multipart/form-data">
                             
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <p  style="font-size: 11px;">Los campos marcados con <span class="text-danger">*</span> son obligatorios</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3">
                                     <div class="col-md-6">
-                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span> </label>
                                         <input type="text" name="nombre" id="nombre" class="form-control">
                                     </div>
                             
                                     <div class="col-md-6">
-                                        <label for="apellido" class="form-label">Apellido</label>
+                                        <label for="apellido" class="form-label">Apellido <span class="text-danger">*</span></label>
                                         <input type="text" name="apellido" id="apellido" class="form-control">
                                     </div>
                                 </div>
                             
                                 <div class="row mt-3">
                                     <div class="col-md-6">
-                                        <label for="telefono" class="form-label">Telefono</label>
+                                        <label for="telefono" class="form-label">Telefono <span class="text-danger">*</span></label>
                                         <input type="text" name="telefono" id="telefono" class="form-control">
                                     </div>
                             
                                     <div class="col-md-6">
-                                        <label for="email" class="form-label">Email</label>
+                                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                         <input type="email" name="email" id="email" class="form-control">
                                     </div>
                                 </div>
